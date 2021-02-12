@@ -1,0 +1,80 @@
+:root{
+    --content-width:320px;
+}
+
+*{
+    margin:0 auto;
+    /* padding:0; */
+}
+
+body{
+    font-family: 
+        "Kokoro",
+        'Noto Serif JP',
+        'Baloo Tamma 2',
+        cursive;
+
+    text-align:center;
+}
+
+#overview{
+    width:50vw;
+    min-width:var(--content-width);
+    max-width:640px;
+    text-align:left;
+}
+
+img{
+    display:none;
+}
+img[src]{
+    display:block;
+}
+
+
+#local-stream{
+    position: relative;
+    width:var(--content-width);
+    min-height:240px;
+}
+video#local-video{
+    position: absolute;
+    left:0;
+    z-index:11;
+    width:var(--content-width);
+}
+.device-switch{
+    position: absolute;
+    bottom:0;
+    left:0;right:0;
+    z-index:12;
+
+    color:white;
+    text-shadow:0 2px 2px black;
+ }
+
+.device-icon{
+    position: absolute;
+    margin:auto;
+    top:0;bottom:0;
+    left:0;right:0;
+    z-index:12;
+    width:100px;
+    height:100px;
+}
+
+#entry{
+    position: relative;
+}
+
+form{
+    margin:0 auto;
+    width:var(--content-width);
+}
+form label{
+    margin:0 auto;
+    width:100%;
+}
+form select{
+    margin:0 auto;
+}

@@ -1,0 +1,147 @@
+:root{
+    --content-width:320px;
+}
+
+*{
+    margin:0 auto;
+    /* padding:0; */
+}
+
+html,head{
+    margin:0;
+    padding:0;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
+    font-family: 
+        "Kokoro",
+        'Noto Serif JP',
+        'Baloo Tamma 2',
+        cursive;
+        
+    position:relative;
+
+    text-align:center;
+}
+
+img{
+    display:none;
+}
+img[src]{
+    display:block;
+}
+
+/* body > toppage */
+#toppage{
+    position:absolute;
+    top:0;left:0;
+    z-index:2;
+}
+
+/* body > room */
+#room{
+    position:absolute;
+    z-index:1;
+    left:0;right:0;
+    margin:0 auto;
+}
+
+/* body > room > remote-stream-area */
+#remote-stream-area{
+    position:relative;
+    width:100vw;
+    height:240px;/**/
+}
+
+.remote-stream{
+    position:relative;
+    display:inline-block;
+    left:0;right:0;
+    width:120px;
+    height:240px;
+    /* width:var(--content-width);
+    height:100% */
+}
+.remote-stream video, .remote-stream p{
+    position:absolute;
+    left:0;right:0;
+    object-fit:cover;
+}
+.remote-stream video{
+    /* for object-fit*/
+    width:320px;
+    height:240px;
+}
+.remote-stream p{  
+    bottom:0;
+
+    color:white;
+    text-shadow:0 2px 2px black;
+}
+
+/* body > room > table-select */
+#table-select{
+    position:relative;
+}
+
+/* body > room > local-stream  */
+#local-stream{
+    position: relative;
+    width:var(--content-width);
+    min-height:240px;
+}
+video#local-video{
+    position: absolute;
+    left:0;
+    z-index:11;
+    width:var(--content-width);
+}
+.device-switch{
+    position: absolute;
+    bottom:0;
+    left:0;right:0;
+    z-index:12;
+    
+    color:white;
+    text-shadow:0 2px 2px black;
+}
+
+.device-icon{
+    position: absolute;
+    margin:auto;
+    top:0;bottom:0;
+    left:0;right:0;
+    z-index:12;
+    width:100px;
+    height:100px;
+}
+
+/* body > loading */
+#loading{
+    position: absolute;
+    z-index:3;
+
+    background-image:url("../../img/wine.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.table-none{
+    display:none;
+}
+
+.table-left{
+    transform: perspective(50px) rotateY(30deg);
+}
+.table-center{
+    /* transform: perspective(50px) rotateY(30deg); */
+}
+.table-right{
+    transform: perspective(50px) rotateY(-30deg);
+}
