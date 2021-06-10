@@ -31,10 +31,14 @@
   <body>
       <h1>遠飲み ~トオトノミ~</h1>
     
-      <h3>それじゃ、またオンラインで</h3>
+      <h3>いらっしゃいませ、宴会のご企画ですね。</h3>
 
-      <form action="/create" method="POST">
-        <input type="submit" value="宴会を企画する"/>
+      <form action="/check" method="POST">
+        <p>
+          <input type="text" name="invide-code" value="https://totonomi.prodbyfit.com/room?id=XXXXXX"/>
+          <input type="button" name="invite-code-copy" value="コピー"/>
+        </p>
+        <input type="submit" value="次へ"/>
       </form>
       <a href="/invited">宴会へ招待された方はこちらから</a>
 

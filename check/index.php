@@ -31,12 +31,18 @@
   <body>
       <h1>遠飲み ~トオトノミ~</h1>
     
-      <h3>それじゃ、またオンラインで</h3>
+      <h3>お名前をご記入ください。</h3>
 
-      <form action="/create" method="POST">
-        <input type="submit" value="宴会を企画する"/>
+      <form action="/room" method="POST">
+        <input type="text" name="user-name" placeholder="おなまえ / NAME"/>
+        <input type="button" name="user-camera" value="カメラON"/>
+        <input type="button" name="user-mic" value="マイクON"/>
+        <label>名前を保存
+          <input type="checkbox">
+        </label>
+        <input type="submit" value="入場"/>
       </form>
-      <a href="/invited">宴会へ招待された方はこちらから</a>
+      <!-- <a href="/invited">宴会へ招待された方はこちらから</a> -->
 
   </body>
 </html>
