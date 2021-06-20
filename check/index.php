@@ -6,34 +6,33 @@
   // }
 ?>
 
+<?php
+  //#1 リダイレクト時の入力チェック
+
+  //入力に不備がなければ
+  //roomへ遷移
+
+  //入力に不備があれば
+  //エラー出力処理
+  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php include($_SERVER["DOCUMENT_ROOT"]."/loader/inhead.loader.php") ?>
     <title>遠飲み ~トオトノミ~</title>
-
-    <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&amp;display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/default.css">
-
-    <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js" ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
-    <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js" ></script>
-
-    <script src="/script.js"></script>
-
-    <!-- <script src="js/face-api.min.js"></script> -->
-    <!-- <script src="js/p5.min.js"></script> -->
-
   </head>
   <body>
       <h1>遠飲み ~トオトノミ~</h1>
     
       <h3>お名前をご記入ください。</h3>
 
-      <form action="/room" method="POST">
+      <!-- Skywayで発行した(もしくは招待コードの)IDとここでの情報を独自DBに保存 -->
+
+      <!-- <form action="/room" method="POST"> -->
+      <!-- 入力チェックのため、このページへリダイレクト(#1) -->
+      <form action="/" method="POST">
         <input type="text" name="user-name" placeholder="おなまえ / NAME"/>
         <input type="button" name="user-camera" value="カメラON"/>
         <input type="button" name="user-mic" value="マイクON"/>

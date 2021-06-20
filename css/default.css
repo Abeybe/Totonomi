@@ -6,3 +6,7 @@ html,body{
 body{
     text-align: center;
 }
+
+video{
+    background-color: gray;
+}

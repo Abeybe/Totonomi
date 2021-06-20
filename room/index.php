@@ -9,34 +9,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php include($_SERVER["DOCUMENT_ROOT"]."/loader/inhead.loader.php") ?>
     <title>遠飲み ~トオトノミ~</title>
 
-    <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&amp;display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/default.css">
-
-    <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js" ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
-    <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js" ></script>
-
-    <script src="/script.js"></script>
-
-    <!-- <script src="js/face-api.min.js"></script> -->
-    <!-- <script src="js/p5.min.js"></script> -->
+    <link rel="stylesheet" href="/css/room.css"/>
 
   </head>
   <body>
     <h1>遠飲み ~トオトノミ~</h1>
     
     <div id="local-videos-area">
-      <video class="local-video video-stream">
+      <video class="local-video video-stream"></video>
     </div>
 
     <div id="remote-videos-area">
-      <!-- <video class="local-video video-stream"> -->
+      <video class="remote-video video-stream"></video>
+      <video class="remote-video video-stream"></video>
+      <video class="remote-video video-stream"></video>
     </div>
 
     <div class="user-menu">
