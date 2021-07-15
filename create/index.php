@@ -1,9 +1,20 @@
 <?php
-  $_SESSION["ERROR_MESSAGE"]="";
+  include($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomController.php");
+?>
+
+<?php
   session_start();
-  // if($_SERVER['REQUEST_METHOD'] != "POST"){
-  //   $_SESSION["ERROR_MESSAGE"]="";
-  // }
+
+  //独自DBでROOM-IDの重複検知
+
+  //仮に接続
+  //ルームIDがすでにあるかどうか
+  $con=new RoomController();
+  $id=uniqid();//時刻(mm)に基づいた一意な値
+  while($con->inRoomById($id)){
+    $id=uniqid();
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -11,22 +22,28 @@
   <head>
     <?php include($_SERVER["DOCUMENT_ROOT"]."/loader/inhead.loader.php") ?>
     <title>遠飲み ~トオトノミ~</title>
+    <style>
+      .share-link{
+        width:640px;
+      }
+    </style>
   </head>
   <body>
 
-    <!-- skywayでid発行(仮にルーム作成をする) @js -->
+    <!-- 独自DBでidの重複検知 -->
 
     <h1>遠飲み ~トオトノミ~</h1>
   
     <h3>いらっしゃいませ、宴会のご企画ですね。</h3>
 
-    <form action="/check" method="POST">
+    <?php//招待URLからの遷移と同じurlにしたいからget ?>
+    <form action="/check" method="GET">
       <!-- hiddenに取得したルームIDを保存 -->
-      <input type="hidden" name="room-id" value=""/>
       <p>
         <!-- ルームID(と有効期限情報)に紐づけて招待コード発行 -->
-        <input type="text" name="invide-code" 
-          value="https://totonomi.prodbyfit.com/room?id=XXXXXX" disabled
+        <input type="hidden" name="invite_code" value="<?=$id ?>"/>
+        <input type="text" class="share-link"
+          value="https://totonomi.prodbyfit.com/check?id=<?=$id ?>" disabled
         />
         <!-- クリックでコピー -->
         <input type="button" name="invite-code-copy" value="コピー"/>

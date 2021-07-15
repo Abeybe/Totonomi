@@ -1,9 +1,6 @@
 <?php
   $_SESSION["ERROR_MESSAGE"]="";
   session_start();
-  // if($_SERVER['REQUEST_METHOD'] != "POST"){
-  //   $_SESSION["ERROR_MESSAGE"]="";
-  // }
 ?>
 
 <?php
@@ -22,11 +19,15 @@
   <head>
     <?php include($_SERVER["DOCUMENT_ROOT"]."/loader/inhead.loader.php") ?>
     <title>遠飲み ~トオトノミ~</title>
+    <script src="/js/roomManager.js"></script>
   </head>
   <body>
       <h1>遠飲み ~トオトノミ~</h1>
     
       <h3>お名前をご記入ください。</h3>
+
+      <video id="local-video">
+      </video>
 
       <!-- Skywayで発行した(もしくは招待コードの)IDとここでの情報を独自DBに保存 -->
 

@@ -1,9 +1,25 @@
 <?php
+  include($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomController.php");
+?>
+
+<?php
   $_SESSION["ERROR_MESSAGE"]="";
   session_start();
-  // if($_SERVER['REQUEST_METHOD'] != "POST"){
-  //   $_SESSION["ERROR_MESSAGE"]="";
-  // }
+  
+  $con=new RoomController();
+  if(isset($_POST["invite_code"])){
+    $id=$_POST["invite_code"];
+    //ルームIDが存在するか
+    if($con->inRoomById($id)){
+      echo "あるよ";
+      //入室処理
+      header("Location: /check?id=".$id);
+    }else{
+      echo "ないよ";
+      //
+    }
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +33,11 @@
     
       <h3>それじゃ、またオンラインで</h3>
 
-      <form action="/create" method="POST">
+      <form action="./" method="POST">
+        <input type="text" name="invite_code" value="" placeholder="" require/>
         <input type="submit" value="宴会を企画する"/>
       </form>
-      <a href="/invited">宴会へ招待された方はこちらから</a>
+      <a href="/create">宴会を企画する人はこちらから</a>
 
   </body>
 </html>
