@@ -6,3 +6,10 @@
 #remote-videos-area{
     display: inline-block;
 }
+
+.under-menu{
+    position:absolute;
+    bottom:0;
+
+    background-color: black;
+}

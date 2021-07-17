@@ -1,7 +1,5 @@
 const Peer=window.Peer;
 let room;
-let localStream;
-let localVideos;
 
 let roomData={
     max_member:null,
@@ -26,42 +24,39 @@ let roomData={
     ]
 };
 
-//check,roomで使用
-$(window).on("load",async function(){
-    //カメラマイクデバイスの取得
-    localStream=await navigator.mediaDevices.getUserMedia({
-        audio:true,
-        video:true
-    });
-    console.log(localStream);
-    //表示用videoの取得
-    localVideo=$("#local-video").get(0);
-    localVideo.srcObject=localStream;
-    localVideo.playsInline=true;
-    await localVideo.play().catch(console.error);
-});//$
 
-//roomで使用
-function peerJoin(){
+
+async function peerJoin(){
 
     //接続準備
-    const peer=(window.peer=new Peer({
+    const peer=await (window.peer=new Peer({
         key:window.__SKYWAY_KEY__,
         debug:1
     }));
 
     //接続開始
-    //roomはこの中で扱う
-    peer.on("on",function(id){
+    peer.on("open",function(id){
         //roomIdは指定する
-        room=peer.joinRoom("",{
+        room=peer.joinRoom(roomId,{
             mode:"mesh",
             stream:localStream
         });
+        console.log("RoomId:"+roomId);
+        console.log("PeerId:"+id);
 
         //roomのopenイベント(部屋が開かれた時ではない)
         room.once("open",function(){
-
+            //DBのにSKYWAYのユーザID(peerId)を保持
+            $.ajax({
+                type: "POST",
+                url: "/room/index.php",
+                data: { "skyway-peerid" : id},
+                dataType : "json"
+                }).done(function(data){
+                    console.log("done",data);
+                }).fail(function(XMLHttpRequest, status, e){
+                    alert(e);
+                });
         });//room.once open
 
         //roomのcloseイベント
@@ -79,6 +74,7 @@ function peerJoin(){
             var newVideo=$("<video>",{
                 id:stream.peerId,
                 playsInline:true
+
             });
             newVideo.get(0).srcObject=tream;
             video.appendTo("");//ToDo
@@ -95,6 +91,6 @@ function peerJoin(){
         room.on("data",function({peerId,data}){
 
         });//room.on data
+    });
 
-    });//peer.on
 }

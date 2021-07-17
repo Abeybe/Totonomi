@@ -1,24 +1,22 @@
 <?php
-  include($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomController.php");
+  include($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomDao.php");
+  include($_SERVER["DOCUMENT_ROOT"]."/phpController/UserDao.php");
 ?>
 
 <?php
-  $_SESSION["ERROR_MESSAGE"]="";
   session_start();
-  
-  $con=new RoomController();
-  if(isset($_POST["invite_code"])){
-    $id=$_POST["invite_code"];
-    //ルームIDが存在するか
-    if($con->inRoomById($id)){
-      echo "あるよ";
-      //入室処理
-      header("Location: /check?id=".$id);
-    }else{
-      echo "ないよ";
-      //
+
+  if(isset($_POST["room-id"])){
+    $roomDao=new RoomDao();
+    if($roomDao->inRoomById($_POST["room-id"])){
+      $_SESSION["USER-ID"]=$_POST["user-id"];
+      header("Location: /check?room=".$_POST["room-id"],true);
     }
   }
+  
+  //重複のないユーザID生成
+  $userDao=new UserDao();
+  $userId=$userDao->createUniqUserId();
 
 ?>
 
@@ -34,8 +32,9 @@
       <h3>それじゃ、またオンラインで</h3>
 
       <form action="./" method="POST">
-        <input type="text" name="invite_code" value="" placeholder="" require/>
-        <input type="submit" value="宴会を企画する"/>
+        <input type="hidden" name="user-id" value="<?=$userId ?>" />
+        <input type="text" name="room-id" value="" placeholder="" require/>
+        <input type="submit" name="" value="参加する"/>
       </form>
       <a href="/create">宴会を企画する人はこちらから</a>
 
