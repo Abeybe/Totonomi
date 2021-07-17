@@ -15,6 +15,7 @@
   }
   
   //重複のないユーザID生成
+  //ToDo:ここでリロード繰り返すとDBあふれるので要改良
   $userDao=new UserDao();
   $userId=$userDao->createUniqUserId();
 

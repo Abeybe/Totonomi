@@ -7,10 +7,43 @@ class TableDao{
     //================================================================//
     //外部ファイル(~index.php)呼び出し用メソッド
     //================================================================//
+
+    //テーブル一覧取得
+    public function getAllTables($roomId){
+        try{
+            $dao=(new DbConnectionFactory())->connect();
+            $stmt=$dao->prepare(
+                "SELECT TABLE_ID,TABLE_NAME,TOPIC ".
+                "FROM TTNM_TABLES ". 
+                "WHERE ROOM_ID=?"
+            );
+            $stmt->execute(array(
+                $roomId
+            ));
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(DAOException $e){
+            echo $e->getMassage();
+        }
+    }
     
     //テーブル移動
+    //ToDo:該当情報がない場合のことを考えるべきか
     public function changeTable($roomId,$userId,$tableId){
-
+        try{
+            $dao=(new DbConnectionFactory())->connect();
+            $stmt=$dao->prepare(
+                "UPDATE TTNM_ROOM_USER SET TABLE_ID=?".
+                "WHERE ROOM_ID=? AND USER_ID=?"
+            );
+            $stmt->execute(array(
+                $tableId,
+                $roomId,
+                $userId
+            ));
+        }catch(DAOException $e){
+            echo $e->getMassage();
+        }
     }
 
     //================================================================//

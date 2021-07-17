@@ -1,7 +1,6 @@
 <?php
   include_once($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomDao.php");
   include_once($_SERVER["DOCUMENT_ROOT"]."/phpController/UserDao.php");
-  include_once($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomUserDao.php");
 ?>
 
 <?php
@@ -31,10 +30,6 @@
     $userId=$userDao->createUniqUserId();
   }
   $roomId=$_GET["room"];
-
-  //DB上のROOMへ接続処理//ToDo:
-  $roomUserDao=new RoomUserDao();
-  $roomUserDao->insertRoomUser($roomId,$userId);
   
 ?>
 
@@ -69,6 +64,9 @@
         <input type="submit" name="join-room" value="入場"/>
       </form>
       <!-- <a href="/invited">宴会へ招待された方はこちらから</a> -->
-
+      
+      <script>
+        deviceSetup();
+      </script>
   </body>
 </html>

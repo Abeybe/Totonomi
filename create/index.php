@@ -13,10 +13,12 @@
   }
   
   //重複のないユーザID生成
+  //ToDo:ここでリロード繰り返すとDBあふれるので要改良
   $userDao=new UserDao();
   $userId=$userDao->createUniqUserId();
 
   //重複のない部屋ID生成
+  //ToDo:ここでリロード繰り返すとDBあふれるので要改良
   $roomDao=new RoomDao();
   $roomId=$roomDao->createUniqRoomId($userId);
 

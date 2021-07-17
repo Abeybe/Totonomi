@@ -31,14 +31,12 @@ class UserDao{
                 $userName,
                 $userId
             ));
-            $result=$stmt->fetch(PDO::FETCH_ASSOC);
-            return $result["COUNT"]>0;
         }catch(DAOException $e){
             echo $e->getMassage();
         }
     }
-
-    public function insertSkywayPeerid($userId,$peerId){
+    
+    public function updateSkywayPeerid($userId,$peerId){
         try{
             $dao=(new DbConnectionFactory())->connect();
             $stmt=$dao->prepare(

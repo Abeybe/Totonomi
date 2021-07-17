@@ -1,3 +1,6 @@
+//SkyWay接続管理用
+//roomで使用
+
 const Peer=window.Peer;
 let room;
 
@@ -36,6 +39,7 @@ async function peerJoin(){
 
     //接続開始
     peer.on("open",function(id){
+        console.log(localStream);
         //roomIdは指定する
         room=peer.joinRoom(roomId,{
             mode:"mesh",
@@ -50,13 +54,15 @@ async function peerJoin(){
             $.ajax({
                 type: "POST",
                 url: "/room/index.php",
-                data: { "skyway-peerid" : id},
+                data: { "ajax-skyway-peerid" : id},
                 dataType : "json"
                 }).done(function(data){
                     console.log("done",data);
-                }).fail(function(XMLHttpRequest, status, e){
-                    alert(e);
-                });
+                })
+                // .fail(function(XMLHttpRequest, status, e){
+                //     alert(e);
+                // })
+                ;
         });//room.once open
 
         //roomのcloseイベント
@@ -66,18 +72,19 @@ async function peerJoin(){
 
         //他者接続時
         room.on("peerJoin",function(peerId){
-
+            console.log(peerId+" Joined");
         });//room.on peerJoin
 
         //他者の映像取得時
-        room.on("sream",function(stream){
+        room.on("stream",async function(stream){
+            console.log("on Stream");
             var newVideo=$("<video>",{
                 id:stream.peerId,
                 playsInline:true
-
             });
-            newVideo.get(0).srcObject=tream;
-            video.appendTo("");//ToDo
+            newVideo.get(0).srcObject=stream;
+            await newVideo.get(0).play().catch(console.error);
+            newVideo.appendTo("#remote-videos-area");//ToDo
         });//room on stream
 
         //他者の映像切断時

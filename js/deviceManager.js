@@ -1,20 +1,22 @@
+//デバイス管理用
+//check,roomで利用
+
 let localStream;
 let localVideo;
 
-//check,roomで使用
-$(window).on("load",async function(){
+async function deviceSetup(){
     //カメラマイクデバイスの取得
     localStream=await navigator.mediaDevices.getUserMedia({
         audio:true,
         video:true
     });
-    console.log(localStream);
     //表示用videoの取得
     localVideo=$("#local-video").get(0);
     localVideo.srcObject=localStream;
     localVideo.playsInline=true;
     await localVideo.play().catch(console.error);
 
+    console.log("Device ready");
 
     $("#camera-switch").on("click",function(){
         if(localStream){
@@ -32,5 +34,5 @@ $(window).on("load",async function(){
         }
     });
     
-});//$
+}
 
