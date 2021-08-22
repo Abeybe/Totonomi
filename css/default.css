@@ -1,15 +1,131 @@
+
+:root{
+    --theme-lightyellow:#ffdf99ff;
+    --theme-shallowyellow:#ffc547ff;
+    --theme-deepyellow:#ffaf00ff;
+
+    --theme-white:white;
+    --theme-gray:gray;
+    --theme-lightorange:#ff6526ff;
+    --theme-deeporange:#521800ff;
+
+    --theme-s-white:#e6e6e6ff;
+    --theme-s-brown:#bf7f3dff;
+}
+
+*{
+    margin:0;
+    padding: 0;
+}
+
 html,body{
+    width:100%;
+    height:100vh;
+    max-height: 100%;
     margin:0;
     padding:0;
 }
 
 body{
-    width:100vw;
-    height: 100vh;
+    /* display: table; */
     text-align: center;
+
+    /* background-color: var(--theme-lightyellow); */
+    background-color: var(--theme-s-white);
+    color: var(--theme-deeporange);
+}
+
+a,a:hover,a:link,a:visited{
+    color: var(--theme-deeporange);
+}
+
+img.l-icon{
+ width:200px;
+ height: auto;
+}
+
+img.m-icon{
+
+}
+
+img.s-ion{
+
+}
+
+input{
+    margin:2px;
+}
+
+input[type="text"]{
+    text-align: center;
+    width:120px;
+    height:40px;
+    border:none;
+    border-radius: 4px;
+    background-color: var(--theme-white);
+}
+input[type="text"].long{
+    width:240px;
+}
+input[type="text"]:disabled{
+    color: var(--theme-white);
+    background-color: var(--theme-gray);
+}
+
+input[type="button"],input[type="submit"]{
+    width:120px;
+    height:40px;
+    border:none;
+    border-radius: 4px;
+    background-color: var(--theme-s-brown);
+}
+input[type="button"].long,input[type="submit"].long{
+    width:240px;
+}
+
+input[type="button"].btn-cloud-simple,input[type="submit"].btn-cloud-simple{
+    background-color: transparent;
+    background-image: url("/sources/common_btnbg_simple01.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+textarea{
+    border:none;
+    border-radius: 2px;
+    background-color: transparent;
+}
+
+select{
+    width:120px;
+    height:40px;
+    border:none;
+    border-radius: 4px;
+    background-color: var(--theme-white);
+}
+
+option{
+    padding: 5px;
+
+    width:120px;
+    height:40px;
+    border:none;
+    border-radius: 4px;
+    background-color: var(--theme-white);
 }
 
 video{
     width:320px;
     background-color: gray;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+
+    width:100%;
+    height: 100px;
+    /* background-color: var(--theme-shallowyellow); */
+    background-color: var(--theme-s-brown);
+
 }

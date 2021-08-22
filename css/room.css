@@ -1,15 +1,62 @@
-/* videoタグ全般 */
-.video-stream{
 
+ul.inline-list{
+    height: 100%;
+}
+ul.inline-list li{
+    height: 100%;
+    display: inline;
 }
 
-#remote-videos-area{
+article{
+    width: 100%;
+    height: calc(100% - 100px);
+}
+
+footer{
+    display: table;
+    vertical-align: middle;
+    width: 100%;
+    height:100px;
+}
+
+footer form{
+    display: table-cell;
+    vertical-align: middle;
     display: inline-block;
+}
+
+
+/* videoタグ全般 */
+
+.local-video{
+    width: 160px;
+    height: auto;
+}
+.remote-video{
+    width: 320px;
+    height: auto;
+}
+
+.local-videos-area{
+    /* background-color: coral; */
+    width:100%;
+    height: 200px;
+}
+
+.remote-videos-area{
+    /* background-color:cornflowerblue; */
+    display: inline-block;
+    
+    width:100%;
+    height: calc(100% - 200px);
 }
 
 .under-menu{
     position:absolute;
     bottom:0;
 
-    background-color: black;
+    width:100vw;
+    height:100px;
+
+    /* background-color: grey; */
 }

@@ -1,11 +1,10 @@
 <?php
+  session_start();
   include($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomDao.php");
   include($_SERVER["DOCUMENT_ROOT"]."/phpController/UserDao.php");
 ?>
 
 <?php
-  session_start();
-
   if(isset($_POST["room-id"])){
     $roomDao=new RoomDao();
     if($roomDao->inRoomById($_POST["room-id"])){

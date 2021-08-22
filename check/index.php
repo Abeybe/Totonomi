@@ -1,16 +1,20 @@
 <?php
+  session_start();
   include_once($_SERVER["DOCUMENT_ROOT"]."/phpController/RoomDao.php");
   include_once($_SERVER["DOCUMENT_ROOT"]."/phpController/UserDao.php");
 ?>
 
 <?php
-  session_start();
-
   if(isset($_POST["join-room"])){
     $userDao=new UserDao();
-    $userDao->insertName($_POST["user-id"],$_POST["user-name"]);
-
+    $userDao->updateUserName($_POST["user-id"],$_POST["user-name"]);
+    
+    $_SESSION["USER-ID"]=$_POST["user-id"];
     $_SESSION["ROOM-ID"]=$_POST["room-id"];
+
+    $_SESSION["CAMERA-ENABLED"]=$_POST["camera-enabled"];
+    $_SESSION["MIC-ENABLED"]=$_POST["mic-enabled"];
+
     header("Location: /room");exit;
   }
 
@@ -56,14 +60,23 @@
         <input type="hidden" name="room-id" value="<?=$roomId ?>"/>
         <input type="hidden" name="user-id" value="<?=$userId ?>"/>
         <input type="text" name="user-name" placeholder="おなまえ / NAME"/>
-        <input id="camera-switch" type="button" name="user-camera" value="カメラON"/>
-        <input id="mic-switch" type="button" name="user-mic" value="マイクON"/>
+
+        <input id="camera-enabled" type="hidden" name="camera-enabled" value="true"/>
+          <input id="camera-switch" type="button" name="user-camera" value="カメラON"/>
+        <!-- <div class="mt-square-pink">
+          <input id="camera-switch" type="checkbox" name="user-camera" value="カメラON"/>
+        </div> -->
+        <input id="mic-enabled" type="hidden" name="mic-enabled" value="true"/>
+          <input id="mic-switch" type="button" name="user-mic" value="マイクON"/>
+        <!-- <div class="mt-square-pink">
+          <input id="mic-switch" type="checkbox" name="user-mic" value="マイクON"/>
+        </div> -->
+        
         <label>名前を保存
           <input type="checkbox">
         </label>
         <input type="submit" name="join-room" value="入場"/>
       </form>
-      <!-- <a href="/invited">宴会へ招待された方はこちらから</a> -->
       
       <script>
         deviceSetup();

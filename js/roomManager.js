@@ -59,9 +59,9 @@ async function peerJoin(){
                 }).done(function(data){
                     console.log("done",data);
                 })
-                // .fail(function(XMLHttpRequest, status, e){
-                //     alert(e);
-                // })
+                .fail(function(XMLHttpRequest, status, e){
+                    alert(e);
+                })
                 ;
         });//room.once open
 
@@ -80,11 +80,16 @@ async function peerJoin(){
             console.log("on Stream");
             var newVideo=$("<video>",{
                 id:stream.peerId,
+                class:"remote-video",
                 playsInline:true
             });
             newVideo.get(0).srcObject=stream;
             await newVideo.get(0).play().catch(console.error);
             newVideo.appendTo("#remote-videos-area");//ToDo
+
+            //最初はすべて隠したい(ajaxの更新時に出す)
+            $("#"+stream.peerId).prop("volume",0.05);
+            $("#"+stream.peerId).hide();
         });//room on stream
 
         //他者の映像切断時
@@ -98,6 +103,32 @@ async function peerJoin(){
         room.on("data",function({peerId,data}){
 
         });//room.on data
+
+        let replaceFlag=false;
+        let localStreamTmp;
+        $("#share-screen").on("click",async function(){
+            var replaceStream;
+            if(!replaceFlag){
+                try{
+                    // console.log(localStream.getVideoTracks()[0],localStream.getAudioTracks()[0]);
+                    replaceStream=await navigator.mediaDevices.getDisplayMedia({video:true});
+                    replaceFlag=true;
+                    // localVideo.srcObject=replaceStream;
+                }finally{ 
+                    replaceStream.addTrack(localStream.getAudioTracks()[0]);     
+                    // console.log(replaceStream.getVideoTracks()[0],replaceStream.getAudioTracks()[0]);
+                    room.replaceStream(replaceStream);
+                }
+            }else{
+                replaceStream=await navigator.mediaDevices.getUserMedia({
+                    audio:true,
+                    video:true
+                });
+                replaceFlag=false;
+            }
+
+            replaceVideo(replaceStream);
+        });
     });
 
 }

@@ -9,13 +9,16 @@ class RoomUserDao{
     //外部ファイル(~index.php)呼び出し用メソッド
     //================================================================//
 
-    //仮接続(JOINED_FLAGをdefaultの0にしておく)
+    //接続
     public function joinRoom($roomId,$userId){
-        if($this->isUserJoined($roomId,$userId))return;
+        if($this->isUserJoined($roomId,$userId)){
+            $this->reJoinRoom($roomId,$userId);
+            return;
+        }
         //roomId,userIdをTTNM_ROOM_USERへINSERT
         try{
-            $dao=(new DbConnectionFactory())->connect();
-            $stmt=$dao->prepare(
+            $con=(new DbConnectionFactory())->connect();
+            $stmt=$con->prepare(
                 "INSERT INTO TTNM_ROOM_USER (ROOM_ID,USER_ID,JOIN_FLAG) ".
                 "VALUES (?,?,1) "
             );
@@ -32,8 +35,8 @@ class RoomUserDao{
         //roomId,userIdをTTNM_ROOM_USERからDELETE
         //or JOINED_FLAGを0にUPDATE
         try{
-            $dao=(new DbConnectionFactory())->connect();
-            $stmt=$dao->prepare(
+            $con=(new DbConnectionFactory())->connect();
+            $stmt=$con->prepare(
                 "DELETE FROM TTNM_ROOM_USER ".
                 "WHERE ROOM_ID=? ". 
                 "   AND USER_ID=?"
@@ -45,6 +48,25 @@ class RoomUserDao{
         }catch(DAOException $e){
             echo $e->getMassage();
         }
+    }
+    //再接続
+    public function reJoinRoom($roomId,$userId){
+        try{
+            $con=(new DbConnectionFactory())->connect();
+            $stmt=$con->prepare(
+                "UPDATE TTNM_ROOM_USER SET TABLE_ID=? ".
+                "WHERE ROOM_ID=? AND USER_ID=? "
+            );
+            $stmt->execute(array(
+                1,
+                $roomId,
+                $userId
+            ));
+            return true;
+        }catch(DAOException $e){
+            echo $e->getMassage();
+        }
+        return false;
     }
 
     //================================================================//
@@ -62,8 +84,8 @@ class RoomUserDao{
     //ToDo:userIdのみで検索
     public function isUserJoined($roomId,$userId){
         try{
-            $dao=(new DbConnectionFactory())->connect();
-            $stmt=$dao->prepare(
+            $con=(new DbConnectionFactory())->connect();
+            $stmt=$con->prepare(
                 "SELECT COUNT(*) AS 'COUNT' FROM TTNM_ROOM_USER ".
                 "WHERE ROOM_ID=? ".
                 "   AND USER_ID=?"

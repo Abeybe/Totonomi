@@ -31,15 +31,13 @@ class RoomDao{
     public function createRoom($roomId,$hostUserId){
         if($this->inRoomById($roomId))return false;
         try{
-            $dao=(new DbConnectionFactory())->connect();
-            $stmt=$dao->prepare(
+            $con=(new DbConnectionFactory())->connect();
+            $stmt=$con->prepare(
                 "INSERT INTO TTNM_ROOMS ".
                 "(ROOM_ID,HOST_USER_ID,MEMBER_NUM,TABLE_NUM) ".
                 "VALUES(?,?,30,6)"
             );
             $stmt->execute(array($roomId,$hostUserId));
-            $result=$stmt->fetch(PDO::FETCH_ASSOC);
-
             //テーブル作成(TableDao)
             $tableDao=new TableDao();
             $tableDao->createTables($roomId);
@@ -55,8 +53,8 @@ class RoomDao{
     //IDがすでに存在するかどうかtrue/false
     public function inRoomById($id){
         try{
-            $dao=(new DbConnectionFactory())->connect();
-            $stmt=$dao->prepare(
+            $con=(new DbConnectionFactory())->connect();
+            $stmt=$con->prepare(
                 "SELECT COUNT(*) AS 'COUNT' FROM TTNM_ROOMS WHERE ROOM_ID = ?"
             );
             $stmt->execute(array($id));

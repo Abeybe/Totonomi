@@ -1,6 +1,7 @@
 
 function linkCopy(inputId){
-    var text=$(inputId).val();
+    var text=$(inputId).text().replace("\s","");
+    console.log(text);
     // テキストエリアの作成
     let $textarea = $('<textarea></textarea>');
     // テキストエリアに文章を挿入
@@ -16,3 +17,15 @@ function linkCopy(inputId){
     var msg=$("<div id='copy_massage'>コピーしました！</div>");
     msg.appendTo(inputId);
 }
+
+$(function(){
+    $("#create_letter").on("click",function(){
+    
+        $("#popup_letter").addClass("show").fadeIn();
+     
+    });
+    
+    $("#popup_close").on("click",function(){
+        $("#popup_letter").fadeOut();
+    });
+});

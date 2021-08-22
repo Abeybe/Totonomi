@@ -10,17 +10,27 @@
 <html lang="en">
   <head>
     <?php include($_SERVER["DOCUMENT_ROOT"]."/loader/inhead.loader.php") ?>
-    <title>遠飲み ~トオトノミ~</title>
+
+    <link rel="stylesheet" href="/css/top.css"/>
+
+    <title>遠飲</title>
   </head>
   <body>
-      <h1>遠飲み ~トオトノミ~</h1>
-    
-      <h3>それじゃ、またオンラインで</h3>
+    <article>
+      <!-- <h1>遠飲み TOTONOMI</h1> -->
+      <!-- <h3>それじゃ、またオンラインで</h3> -->
+
+      <img class="l-icon" src="/sources/common_logo_simple.png" />
 
       <form action="/create" method="POST">
-        <input type="submit" value="宴会を企画する"/>
+        <input type="submit" class="btn-cloud-simple" value="宴会を企画する"/>
       </form>
       <a href="/invited">宴会へ招待された方はこちらから</a>
+    </article>
+
+    <footer>
+
+    </footer>
 
   </body>
 </html>

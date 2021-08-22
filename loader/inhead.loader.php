@@ -5,6 +5,10 @@
     <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&amp;display=swap" rel="stylesheet">
     
+    <?php//checkboxおしゃれにするやつ ?>
+    <?php//使い方 https://coliss.com/articles/build-websites/operation/css/css-library-for-toggles.html ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JNKKKK/MoreToggles.css/output/moretoggles.min.css">
+
     <link rel="stylesheet" href="/css/default.css">
 
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js" ></script>
