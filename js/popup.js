@@ -1,4 +1,14 @@
 
+$(function(){
+    $("#create_letter").on("click",function(){
+        $("#popup_letter").addClass("show").fadeIn();
+    });
+    
+    $("#popup_close").on("click",function(){
+        $("#popup_letter").fadeOut();
+    });
+});
+
 $("#create_letter").on("click",function(){
     var roomId=$("#room_id").val();
     var letter=

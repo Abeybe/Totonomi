@@ -11,21 +11,13 @@ function linkCopy(inputId){
     //　テキストエリアを選択
     $textarea.select();
     // コピー
-    document.execCommand('copy');
+    document.execCommand('copy'); 
     // テキストエリアの削除
     $textarea.remove();
     var msg=$("<div id='copy_massage'>コピーしました！</div>");
     msg.appendTo(inputId);
 }
 
-$(function(){
-    $("#create_letter").on("click",function(){
-    
-        $("#popup_letter").addClass("show").fadeIn();
-     
-    });
-    
-    $("#popup_close").on("click",function(){
-        $("#popup_letter").fadeOut();
-    });
-});
+function activeButton(e){
+    $(e).toggleClass("active");
+}

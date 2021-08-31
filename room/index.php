@@ -51,6 +51,7 @@
 
   //userManager.js読み込み後、changeイベントで呼び出し(ajax)
   if(isset($_POST["ajax-change-username"])){
+    //TODO:文字化け対策その2：エンコード
     $userDao=new UserDao();
     $userDao->updateUserName($userId,$_POST["ajax-change-username"]);
     header("Content-Type: application/json; charset=UTF-8"); 
@@ -71,8 +72,9 @@
   $tableDao=new TableDao();
   $tables=$tableDao->getAllTables($roomId);
   
-  $cameraEnabled=(isset($_SESSION["CAMERA_ENABLED"]))?$_SESSION["CAMERA_ENABLED"]:"true";
-  $micEnabled=(isset($_SESSION["MIC_ENABLED"]))?$_SESSION["MIC_ENABLED"]:"true";
+  echo $_SESSION["CAMERA-ENABLED"];
+  $cameraEnabled=(isset($_SESSION["CAMERA-ENABLED"]))?$_SESSION["CAMERA-ENABLED"]:"true";
+  $micEnabled=(isset($_SESSION["MIC-ENABLED"]))?$_SESSION["MIC-ENABLED"]:"true";
 
 ?>
 
@@ -92,6 +94,8 @@
     <script src="/js/userManager.js"></script>
     <script src="/js/script.js"></script>
 
+    <script src="/js/roomMenuManager.js"></script>
+
     <script>
       let userId="<?=$userId ?>";
       let roomId="<?=$roomId ?>";
@@ -103,31 +107,54 @@
     <article>
 
       <div id="remote-videos-area" class="remote-videos-area">
-        <!-- <video class="remote-video video-stream"></video>
-        <video class="remote-video video-stream"></video>
-        <video class="remote-video video-stream"></video> -->
-      </div>
-
-      <div id="local-videos-area" class="local-videos-area">
-        <video id="local-video" class="local-video video-stream"></video>
+        <!-- <video class="remote-video video-stream" style="display:block !important" ></video>
+        <video class="remote-video video-stream" style="display:block !important" ></video>
+        <video class="remote-video video-stream" style="display:block !important" ></video> -->
       </div>
 
     </article>
 
-    <footer class="under-menu">
+    <!-- 折り畳みのチャットエリア -->
+    <div id="room_slide_chat" class="room-blind room-chat">
+      <div id="room_close_chat" class="room-close-chat">×</div>
+      <div>
+        <p>こんにちは</p>
+        <p>Hello</p>
+      </div>
+    </div>
 
+    <!-- 折り畳みの設定エリア -->
+    <div id="room_slide_settings" class="room-blind room-settings">
+      <div id="local-videos-area" class="local-videos-area">
+        <video id="local-video" class="local-video video-stream"></video>
+        <p>
+          <input id="user-name" class="short" type="text" value="<?=$user["USER_NAME"]?>"/>
+        </p>
+      </div>
+    </div>
+
+    <!-- フッター兼操作エリア -->
+    <footer class="under-menu">
       <ul class="inline-list">
         <li>      
           <form >
             <input id="camera-enabled" type="hidden" name="camera-enabled" value="<?=$cameraEnabled ?>"/>
-            <input id="camera-switch" type="button" name="user-camera" value="カメラON"/>
             <input id="mic-enabled" type="hidden" name="mic-enabled" value="<?=$micEnabled ?>"/>
-            <input id="mic-switch" type="button" name="user-mic" value="マイクON"/>
-            <input id="share-screen" type="button" value="画面共有"/>
+
+            <input type="text" style="display:none"/>
+            <input id="room_hover_chat" class="room-text-chat" type="text" placeholder="メッセージを入力"/>
+            
+            <input id="camera-switch" class="short <?=($cameraEnabled=='true')?'active':'' ?>" 
+              type="button" name="user-camera" value="<?=($cameraEnabled=='true')?'カメラON':'カメラOFF'?>"/>
+            <input id="mic-switch" class="short <?=($micraEnabled=='true')?'active':'' ?>"
+             type="button" name="user-mic" value="<?=($micEnabled=='true')?'マイクON':'マイクOFF'?>"/>
+            <input id="share-screen" class="short" type="button" value="画面共有"/>
           </form> 
         </li>
         <li>
           <form>
+            <input id="create_letter" class="short" type="button" name="" value="招待状を作成"/> 
+
             <select id="select-table" name="select-table">
               <?php foreach($tables as $table){?>
                 <option value="<?=$table["TABLE_ID"] ?>">
@@ -135,14 +162,8 @@
                 </option>
               <?php } ?>
             </select>
-            <input type="text" value="" style="display:none;" />
-            <input id="user-name" type="text" value="<?=$user["USER_NAME"]?>"/>
-          </form>
-          <input id="create_letter" type="button" name="" value="招待状を作成"/>
-        </li>
-        <li>
-          <form action="" metohd="">
-            <input type="submit" value="退出"/>
+            <input id="room_click_settings" type="button" value="身だしなみ"/>
+            <!-- <input class="short" type="submit" value="退出"/> -->
           </form>        
         </li>
       </ul>

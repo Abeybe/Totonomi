@@ -22,14 +22,17 @@
 
       <img class="l-icon" src="/sources/common_logo_simple.png" />
 
-      <form action="/create" method="POST">
-        <input type="submit" class="btn-cloud-simple" value="宴会を企画する"/>
+      <form class="input-stack" action="/create" method="POST">
+        <!-- <div class="input-stack"> -->
+          <input type="submit" class="btn-cloud-simple" value=""/>
+          <div><strong>宴会</strong>を<strong>企画</strong>する</div>
+        </div>
       </form>
-      <a href="/invited">宴会へ招待された方はこちらから</a>
+      <a class="top-link" href="/invited">宴会へ招待された方はこちらから</a>
     </article>
 
     <footer>
-
+      <a class="common-fitlink" href="https://prodbyfit.com">prodbyfit.</a>
     </footer>
 
   </body>

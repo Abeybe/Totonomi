@@ -1,12 +1,12 @@
 <?php
-define("HOST","mysql144.phy.lolipop.lan");
-define("USER","LAA1211686");
-define("PASS","fitTotonomifit");
-define("DBNAME","LAA1211686-totonomi");
-// define("HOST","localhost");
-// define("USER","root");
-// define("PASS","");
-// define("DBNAME","ttnm");
+// define("HOST","mysql144.phy.lolipop.lan");
+// define("USER","LAA1211686");
+// define("PASS","fitTotonomifit");
+// define("DBNAME","LAA1211686-totonomi");
+define("HOST","localhost");
+define("USER","root");
+define("PASS","");
+define("DBNAME","ttnm");
 
 class DbConnectionFactory{
     public static function connect(){

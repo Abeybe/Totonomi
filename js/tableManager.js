@@ -5,6 +5,8 @@ $(window).on("load",function(){
     
     //表示管理
     function updateUserTable(){
+        
+    　　//テーブルの状態を確認
         var tableId=$("select#select-table").val();
         $.ajax({
             type: "POST",
@@ -24,6 +26,11 @@ $(window).on("load",function(){
             //     alert(e);
             // })
         ;
+
+        //名前の更新検知
+
+        
+
     }
     setInterval(function(){
         updateUserTable();

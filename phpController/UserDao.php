@@ -62,6 +62,7 @@ class UserDao{
     
     //名前データ登録
     public function updateUserName($userId,$userName){
+        //TODO:文字化け対策その１：エンコード
         try{
             $con=(new DbConnectionFactory())->connect();
             $stmt=$con->prepare(

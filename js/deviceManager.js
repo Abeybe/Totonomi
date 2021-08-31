@@ -30,6 +30,8 @@ async function deviceSetup(){
             localStream.getVideoTracks()[0].enabled=!b;
             $(this).val((!b)?"カメラON":"カメラOFF");
             $("#camera-enabled").val(b);
+
+            activeButton($(this));
         }
     });
     
@@ -39,6 +41,8 @@ async function deviceSetup(){
             localStream.getAudioTracks()[0].enabled=!b;
             $(this).val((!b)?"マイクON":"マイクOFF");
             $("#mic-enabled").val(b);
+            
+            activeButton($(this));
         }
     });
 }

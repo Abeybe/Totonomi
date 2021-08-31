@@ -1,0 +1,14 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-settings{
+    display: inline-block;
+    max-width: 50%;
+}
+
+.check-settings video{
+    display: block;
+}

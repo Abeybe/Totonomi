@@ -46,9 +46,11 @@
   <body>
     
     <article>
-      <h1>遠飲み ~トオトノミ~</h1>
+      <!-- <h1>遠飲み ~トオトノミ~</h1> -->
     
-      <h3>いらっしゃいませ、宴会のご企画ですね。</h3>
+      <!-- <h3>いらっしゃいませ、宴会のご企画ですね。</h3> -->
+
+      <img class="l-icon" src="/sources/common_logo_simple.png" />
 
       <?php//招待URLからの遷移と同じurlにしたいからget ?>
       <form action="./" method="POST">
@@ -58,7 +60,7 @@
         <input id="user_id" type="hidden" name="user-id" value="<?=$userId ?>"/>
         <p>
           <input id="share_link" type="text" class="share-link"
-            value="<?=$roomId ?>" disabled
+            value="招待コード:<?=$roomId ?>" disabled
             />
         </p>
           <!-- <input type="button" name="invite-code-copy" value="コピー"
@@ -76,7 +78,7 @@
     <?php include_once($_SERVER["DOCUMENT_ROOT"]."/popup/letter.php"); ?>
 
     <footer>
-
+      <a class="common-fitlink" href="https://prodbyfit.com">prodbyfit.</a>
     </footer>
 
   </body>

@@ -1,5 +1,8 @@
 body{
-    /* background-image: url("/sources/lobby_bg.png"); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;

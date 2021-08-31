@@ -27,16 +27,20 @@
     <title>遠飲み ~トオトノミ~</title>
   </head>
   <body>
-      <h1>遠飲み ~トオトノミ~</h1>
-    
-      <h3>それじゃ、またオンラインで</h3>
+    <h1>遠飲み ~トオトノミ~</h1>
+  
+    <h3>それじゃ、またオンラインで</h3>
 
-      <form action="./" method="POST">
-        <input type="hidden" name="user-id" value="<?=$userId ?>" />
-        <input type="text" name="room-id" value="" placeholder="" require/>
-        <input type="submit" name="" value="参加する"/>
-      </form>
-      <a href="/create">宴会を企画する人はこちらから</a>
+    <form action="./" method="POST">
+      <input type="hidden" name="user-id" value="<?=$userId ?>" />
+      <input type="text" name="room-id" value="" placeholder="" require/>
+      <input type="submit" name="" value="参加する"/>
+    </form>
+    <a href="/create">宴会を企画する人はこちらから</a>
+
+    <footer>
+      <a class="common-fitlink" href="https://prodbyfit.com">prodbyfit.</a>
+    </footer>
 
   </body>
 </html>

@@ -101,8 +101,15 @@ async function peerJoin(){
         //データ取得イベント
         //チャットに利用予定
         room.on("data",function({peerId,data}){
-
+            console.log(peerId,data);
         });//room.on data
+
+        $("#room_hover_chat").keypress(function(e){
+            if(e.key=="Enter"){
+                room.send("["+userId+"]"+$(this).val());
+            }
+            return false;
+        });
 
         let replaceFlag=false;
         let localStreamTmp;

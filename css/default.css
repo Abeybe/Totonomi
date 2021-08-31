@@ -1,4 +1,17 @@
+/* ================================================================
+//フォント読み込み
+    ================================================================*/
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+/* ================================================================
+//共通設定
+//シンプルデザインは--theme-s-*を利用
+    ================================================================*/
 :root{
     --theme-lightyellow:#ffdf99ff;
     --theme-shallowyellow:#ffc547ff;
@@ -11,8 +24,16 @@
 
     --theme-s-white:#e6e6e6ff;
     --theme-s-brown:#bf7f3dff;
+    --theme-s-orange:#e6a135ff;
+
+    --btn-width-s:120px;
+    --btn-width-l:240px;
+    --btn-height:40px;
 }
 
+/* ================================================================
+//リセット
+    ================================================================*/
 *{
     margin:0;
     padding: 0;
@@ -33,54 +54,75 @@ body{
     /* background-color: var(--theme-lightyellow); */
     background-color: var(--theme-s-white);
     color: var(--theme-deeporange);
+
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+}
+
+strong{
+    font-weight: 300;
+    font-size:1.5rem;
+}
+
+article{    
+    text-align: center;
 }
 
 a,a:hover,a:link,a:visited{
     color: var(--theme-deeporange);
 }
 
+/* ================================================================
+//アイコン画像用の設定
+//l-iconはtop、m-icon,s-iconは未使用
+    ================================================================*/
+
 img.l-icon{
- width:200px;
- height: auto;
+ width: auto;
+ height: 200px;
+ transform: translate(0,-20px);
 }
 
 img.m-icon{
-
+    width: auto;
+    height: 180px;
+    /* transform: translate(0,-20px); */
 }
 
 img.s-ion{
 
 }
 
-input{
-    margin:2px;
+/* ================================================================
+//入力項目計の設定
+//topとroomでは独自の追加あり
+    ================================================================*/
+
+input,select{
+    margin:8px;
 }
 
 input[type="text"]{
     text-align: center;
-    width:120px;
+    width:240px;
     height:40px;
-    border:none;
-    border-radius: 4px;
+
+    box-sizing: border-box;
+    border:var(--theme-s-brown) 2px solid;
+    border-radius: 8px;
     background-color: var(--theme-white);
 }
-input[type="text"].long{
-    width:240px;
-}
-input[type="text"]:disabled{
+/* input[type="text"]:disabled{
     color: var(--theme-white);
     background-color: var(--theme-gray);
-}
+} */
 
 input[type="button"],input[type="submit"]{
-    width:120px;
+    width:240px;
     height:40px;
     border:none;
     border-radius: 4px;
     background-color: var(--theme-s-brown);
-}
-input[type="button"].long,input[type="submit"].long{
-    width:240px;
 }
 
 input[type="button"].btn-cloud-simple,input[type="submit"].btn-cloud-simple{
@@ -88,6 +130,41 @@ input[type="button"].btn-cloud-simple,input[type="submit"].btn-cloud-simple{
     background-image: url("/sources/common_btnbg_simple01.png");
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
+    filter: drop-shadow(0px 0px 4px var(--theme-s-brown));
+}
+
+input.short{
+    width:80px;
+}
+input[type="text"].short{
+    width: 120px;
+}
+
+.input-stack{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+
+    margin-top:10px;
+    margin-bottom:10px ;
+
+    position: relative;
+    width: 240px;
+    height: 60px;
+
+    vertical-align: middle;
+}
+
+.input-stack input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.input-stack div{
+    position: absolute;
+    pointer-events: none;
 }
 
 textarea{
@@ -119,7 +196,12 @@ video{
     background-color: gray;
 }
 
+
 footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     position: absolute;
     bottom: 0;
 
@@ -128,4 +210,15 @@ footer{
     /* background-color: var(--theme-shallowyellow); */
     background-color: var(--theme-s-brown);
 
+}
+
+/* ================================================================
+//room以外で利用
+//prodbyfit.comのリンク
+    ================================================================*/
+a.common-fitlink{
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    letter-spacing: 1%;
+    color: var(--theme-s-white);
 }

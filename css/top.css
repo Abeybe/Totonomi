@@ -4,15 +4,19 @@ body{
     align-items: center;
 
     background-image: url("/sources/top_bg_simple.png");
-    background-size: cover;
-    background-position: center;
+    background-size: 100%;
+    background-position: center bottom;
     background-repeat: no-repeat;
 }
 
-footer{
-    display: none;
+a.top-link{
+    color: var(--theme-s-white);
 }
 
 article{
-    
+    width:100%;
+}
+
+footer{
+    background-color: transparent;
 }
