@@ -64,8 +64,8 @@
 
         <div class="check-settings">
             <video id="local-video"></video>
-            <input id="camera-switch" type="button" name="user-camera" value="カメラON"/>
-            <input id="mic-switch" type="button" name="user-mic" value="マイクON"/>
+            <input id="camera-switch" class="short" type="button" name="user-camera" value="カメラON"/>
+            <input id="mic-switch" class="short" type="button" name="user-mic" value="マイクON"/>
         </div>
         <div class="check-settings">
           <!-- <label>名前を保存
